@@ -1,0 +1,69 @@
+{
+  "version": 2,
+  "dgSpecHash": "MUCLBnbweSA=",
+  "success": false,
+  "projectFilePath": "C:\\Users\\User\\Documents\\Projects\\stackoverflow_lite\\src\\StackOverflowLite.Application\\StackOverflowLite.Application.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\User\\.nuget\\packages\\microsoft.netcore.app.ref\\8.0.22\\microsoft.netcore.app.ref.8.0.22.nupkg.sha512",
+    "C:\\Users\\User\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\8.0.22\\microsoft.windowsdesktop.app.ref.8.0.22.nupkg.sha512",
+    "C:\\Users\\User\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\8.0.22\\microsoft.aspnetcore.app.ref.8.0.22.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Error",
+      "message": "Failed to download package 'FluentValidation.DependencyInjectionExtensions.11.12.0' from 'https://api.nuget.org/v3-flatcontainer/fluentvalidation.dependencyinjectionextensions/11.12.0/fluentvalidation.dependencyinjectionextensions.11.12.0.nupkg'.\r\nA connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond. (api.nuget.org:443)\r\n  A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.",
+      "projectPath": "C:\\Users\\User\\Documents\\Projects\\stackoverflow_lite\\src\\StackOverflowLite.Application\\StackOverflowLite.Application.csproj",
+      "filePath": "C:\\Users\\User\\Documents\\Projects\\stackoverflow_lite\\src\\StackOverflowLite.Application\\StackOverflowLite.Application.csproj",
+      "targetGraphs": []
+    },
+    {
+      "code": "Undefined",
+      "level": "Error",
+      "message": "Failed to download package 'MediatR.12.5.0' from 'https://api.nuget.org/v3-flatcontainer/mediatr/12.5.0/mediatr.12.5.0.nupkg'.\r\nA connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond. (api.nuget.org:443)\r\n  A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.",
+      "projectPath": "C:\\Users\\User\\Documents\\Projects\\stackoverflow_lite\\src\\StackOverflowLite.Application\\StackOverflowLite.Application.csproj",
+      "filePath": "C:\\Users\\User\\Documents\\Projects\\stackoverflow_lite\\src\\StackOverflowLite.Application\\StackOverflowLite.Application.csproj",
+      "targetGraphs": []
+    },
+    {
+      "code": "Undefined",
+      "level": "Error",
+      "message": "Failed to download package 'FluentValidation.11.12.0' from 'https://api.nuget.org/v3-flatcontainer/fluentvalidation/11.12.0/fluentvalidation.11.12.0.nupkg'.\r\nA connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond. (api.nuget.org:443)\r\n  A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.",
+      "projectPath": "C:\\Users\\User\\Documents\\Projects\\stackoverflow_lite\\src\\StackOverflowLite.Application\\StackOverflowLite.Application.csproj",
+      "filePath": "C:\\Users\\User\\Documents\\Projects\\stackoverflow_lite\\src\\StackOverflowLite.Application\\StackOverflowLite.Application.csproj",
+      "targetGraphs": []
+    },
+    {
+      "code": "Undefined",
+      "level": "Error",
+      "message": "Failed to download package 'Microsoft.Extensions.DependencyInjection.Abstractions.8.0.2' from 'https://api.nuget.org/v3-flatcontainer/microsoft.extensions.dependencyinjection.abstractions/8.0.2/microsoft.extensions.dependencyinjection.abstractions.8.0.2.nupkg'.\r\nA connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond. (api.nuget.org:443)\r\n  A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.",
+      "projectPath": "C:\\Users\\User\\Documents\\Projects\\stackoverflow_lite\\src\\StackOverflowLite.Application\\StackOverflowLite.Application.csproj",
+      "filePath": "C:\\Users\\User\\Documents\\Projects\\stackoverflow_lite\\src\\StackOverflowLite.Application\\StackOverflowLite.Application.csproj",
+      "targetGraphs": []
+    },
+    {
+      "code": "Undefined",
+      "level": "Error",
+      "message": "The feed 'nuget.org [https://api.nuget.org/v3/index.json]' lists package 'FluentValidation.DependencyInjectionExtensions.11.12.0' but multiple attempts to download the nupkg have failed. The feed is either invalid or required packages were removed while the current operation was in progress. Verify the package exists on the feed and try again.",
+      "projectPath": "C:\\Users\\User\\Documents\\Projects\\stackoverflow_lite\\src\\StackOverflowLite.Application\\StackOverflowLite.Application.csproj",
+      "filePath": "C:\\Users\\User\\Documents\\Projects\\stackoverflow_lite\\src\\StackOverflowLite.Application\\StackOverflowLite.Application.csproj",
+      "targetGraphs": []
+    },
+    {
+      "code": "Undefined",
+      "level": "Error",
+      "message": "The feed 'nuget.org [https://api.nuget.org/v3/index.json]' lists package 'Microsoft.Extensions.DependencyInjection.Abstractions.8.0.2' but multiple attempts to download the nupkg have failed. The feed is either invalid or required packages were removed while the current operation was in progress. Verify the package exists on the feed and try again.",
+      "projectPath": "C:\\Users\\User\\Documents\\Projects\\stackoverflow_lite\\src\\StackOverflowLite.Application\\StackOverflowLite.Application.csproj",
+      "filePath": "C:\\Users\\User\\Documents\\Projects\\stackoverflow_lite\\src\\StackOverflowLite.Application\\StackOverflowLite.Application.csproj",
+      "targetGraphs": []
+    },
+    {
+      "code": "Undefined",
+      "level": "Error",
+      "message": "The feed 'nuget.org [https://api.nuget.org/v3/index.json]' lists package 'MediatR.12.5.0' but multiple attempts to download the nupkg have failed. The feed is either invalid or required packages were removed while the current operation was in progress. Verify the package exists on the feed and try again.",
+      "projectPath": "C:\\Users\\User\\Documents\\Projects\\stackoverflow_lite\\src\\StackOverflowLite.Application\\StackOverflowLite.Application.csproj",
+      "filePath": "C:\\Users\\User\\Documents\\Projects\\stackoverflow_lite\\src\\StackOverflowLite.Application\\StackOverflowLite.Application.csproj",
+      "targetGraphs": []
+    }
+  ]
+}
