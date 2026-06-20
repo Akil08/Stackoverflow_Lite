@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("StackOverflowLite.Domain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+adbac17778247baab77d6c285674b925e06c0a7f")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+56ee8ae6558cd4a43a025e1234a8a3a748d79c2c")]
 [assembly: System.Reflection.AssemblyProductAttribute("StackOverflowLite.Domain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("StackOverflowLite.Domain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

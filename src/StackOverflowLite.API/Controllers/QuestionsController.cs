@@ -2,6 +2,7 @@ using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using StackOverflowLite.Application.Features.Questions;
+using StackOverflowLite.Application.Features.Answers;
 
 namespace StackOverflowLite.API.Controllers;
 
@@ -28,6 +29,24 @@ public class QuestionsController : ControllerBase
     public async Task<IActionResult> GetById(Guid id)
     {
         var result = await _mediator.Send(new GetQuestionByIdQuery(id));
+        if (!result.IsSuccess) return BadRequest(result.Error);
+        return Ok(result.Value);
+    }
+
+    [HttpGet("{questionId}/answers")]
+    public async Task<IActionResult> GetAnswers(Guid questionId)
+    {
+        var result = await _mediator.Send(new GetAnswersByQuestionQuery(questionId));
+        if (!result.IsSuccess) return BadRequest(result.Error);
+        return Ok(result.Value);
+    }
+
+    [Authorize]
+    [HttpPost("{questionId}/answers")]
+    public async Task<IActionResult> CreateAnswer(Guid questionId, CreateAnswerCommand command)
+    {
+        if (questionId != command.QuestionId) return BadRequest("Id mismatch");
+        var result = await _mediator.Send(command);
         if (!result.IsSuccess) return BadRequest(result.Error);
         return Ok(result.Value);
     }

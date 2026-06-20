@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("StackOverflowLite.Application")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+753be725dd4636454ee17dbe19ca7faba6609c69")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+56ee8ae6558cd4a43a025e1234a8a3a748d79c2c")]
 [assembly: System.Reflection.AssemblyProductAttribute("StackOverflowLite.Application")]
 [assembly: System.Reflection.AssemblyTitleAttribute("StackOverflowLite.Application")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
