@@ -10,6 +10,8 @@ namespace StackOverflowLite.API.Controllers;
 [Route("api/[controller]")]
 public class QuestionsController : ControllerBase
 {
+    public sealed record AcceptAnswerRequest(Guid? AnswerId);
+
     private readonly IMediator _mediator;
 
     public QuestionsController(IMediator mediator)
@@ -37,6 +39,15 @@ public class QuestionsController : ControllerBase
     public async Task<IActionResult> GetAnswers(Guid questionId)
     {
         var result = await _mediator.Send(new GetAnswersByQuestionQuery(questionId));
+        if (!result.IsSuccess) return BadRequest(result.Error);
+        return Ok(result.Value);
+    }
+
+    [Authorize]
+    [HttpPut("{questionId}/accept")]
+    public async Task<IActionResult> AcceptAnswer(Guid questionId, [FromBody] AcceptAnswerRequest request)
+    {
+        var result = await _mediator.Send(new AcceptAnswerCommand(questionId, request.AnswerId));
         if (!result.IsSuccess) return BadRequest(result.Error);
         return Ok(result.Value);
     }
