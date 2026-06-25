@@ -9,14 +9,23 @@ namespace StackOverflowLite.Application.Features.Questions;
 public class GetQuestionsQueryHandler : IRequestHandler<GetQuestionsQuery, Result<PagedResult<QuestionSummaryDto>>>
 {
     private readonly IApplicationDbContext _db;
+    private readonly ICacheService _cacheService;
 
-    public GetQuestionsQueryHandler(IApplicationDbContext db)
+    public GetQuestionsQueryHandler(IApplicationDbContext db, ICacheService cacheService)
     {
         _db = db;
+        _cacheService = cacheService;
     }
 
     public async Task<Result<PagedResult<QuestionSummaryDto>>> Handle(GetQuestionsQuery request, CancellationToken cancellationToken)
     {
+        var cacheKey = $"questions:list:{request.TagName ?? "all"}:{request.Page}:{request.PageSize}";
+        var cached = await _cacheService.GetAsync<PagedResult<QuestionSummaryDto>>(cacheKey, cancellationToken);
+        if (cached is not null)
+        {
+            return Result<PagedResult<QuestionSummaryDto>>.Success(cached);
+        }
+
         var query = _db.Questions.AsQueryable();
 
         if (!string.IsNullOrEmpty(request.TagName))
@@ -51,6 +60,8 @@ public class GetQuestionsQueryHandler : IRequestHandler<GetQuestionsQuery, Resul
             Page = request.Page,
             PageSize = request.PageSize
         };
+
+        await _cacheService.SetAsync(cacheKey, paged, TimeSpan.FromMinutes(2), cancellationToken);
 
         return Result<PagedResult<QuestionSummaryDto>>.Success(paged);
     }

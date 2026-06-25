@@ -9,10 +9,12 @@ namespace StackOverflowLite.Application.Features.Questions;
 public class GetQuestionByIdQueryHandler : IRequestHandler<GetQuestionByIdQuery, Result<QuestionDetailDto>>
 {
     private readonly IApplicationDbContext _db;
+    private readonly IViewTrackingService _viewTrackingService;
 
-    public GetQuestionByIdQueryHandler(IApplicationDbContext db)
+    public GetQuestionByIdQueryHandler(IApplicationDbContext db, IViewTrackingService viewTrackingService)
     {
         _db = db;
+        _viewTrackingService = viewTrackingService;
     }
 
     public async Task<Result<QuestionDetailDto>> Handle(GetQuestionByIdQuery request, CancellationToken cancellationToken)
@@ -24,9 +26,7 @@ public class GetQuestionByIdQueryHandler : IRequestHandler<GetQuestionByIdQuery,
 
         if (question == null) return Result<QuestionDetailDto>.Failure("Question not found");
 
-        // increment view count
-        question.ViewCount += 1;
-        await _db.SaveChangesAsync(cancellationToken);
+        await _viewTrackingService.IncrementAsync(question.Id, cancellationToken);
 
         var voteCount = _db.Votes.Where(v => v.TargetType == VoteTarget.Question && v.TargetId == question.Id && v.VoteType == VoteType.Upvote).Count()
                         - _db.Votes.Where(v => v.TargetType == VoteTarget.Question && v.TargetId == question.Id && v.VoteType == VoteType.Downvote).Count();
@@ -45,7 +45,7 @@ public class GetQuestionByIdQueryHandler : IRequestHandler<GetQuestionByIdQuery,
             VoteCount = voteCount,
             AnswerCount = answerCount,
             AcceptedAnswerId = question.AcceptedAnswerId,
-            ViewCount = question.ViewCount
+            ViewCount = question.ViewCount + 1
         };
 
         return Result<QuestionDetailDto>.Success(dto);

@@ -8,6 +8,7 @@ using StackOverflowLite.Application.Common.Interfaces;
 using StackOverflowLite.Domain.Entities;
 using StackOverflowLite.Infrastructure.Persistence;
 using StackOverflowLite.Infrastructure.Services;
+using StackExchange.Redis;
 using System.Text;
 
 namespace StackOverflowLite.Infrastructure;
@@ -64,6 +65,14 @@ public static class DependencyInjection
         services.AddHttpContextAccessor();
         services.AddScoped<ICurrentUserService, CurrentUserService>();
         services.AddScoped<IJwtTokenService, JwtTokenService>();
+
+        var redisConnectionString = configuration.GetSection("Redis").GetValue<string>("ConnectionString")
+            ?? throw new InvalidOperationException("Redis:ConnectionString was not found.");
+
+        services.AddSingleton<IConnectionMultiplexer>(_ => ConnectionMultiplexer.Connect(redisConnectionString));
+        services.AddScoped<ICacheService, CacheService>();
+        services.AddScoped<IViewTrackingService, ViewTrackingService>();
+        services.AddHostedService<ViewCountSyncService>();
 
         return services;
     }

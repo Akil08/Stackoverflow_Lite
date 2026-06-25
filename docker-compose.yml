@@ -1,0 +1,35 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: src/StackOverflowLite.API/Dockerfile
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+      - redis
+    environment:
+      ConnectionStrings__DefaultConnection: Host=postgres;Port=5432;Database=stackoverflowlite;Username=postgres;Password=postgres
+      Redis__ConnectionString: redis:6379
+      JwtSettings__Secret: your-secret-key-here-min-32-chars
+      JwtSettings__Issuer: StackOverflowLite
+      JwtSettings__Audience: StackOverflowLite
+
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: stackoverflowlite
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+
+volumes:
+  postgres_data:

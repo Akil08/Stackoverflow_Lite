@@ -10,11 +10,13 @@ public class UpdateQuestionCommandHandler : IRequestHandler<UpdateQuestionComman
 {
     private readonly IApplicationDbContext _db;
     private readonly ICurrentUserService _currentUser;
+    private readonly ICacheService _cacheService;
 
-    public UpdateQuestionCommandHandler(IApplicationDbContext db, ICurrentUserService currentUser)
+    public UpdateQuestionCommandHandler(IApplicationDbContext db, ICurrentUserService currentUser, ICacheService cacheService)
     {
         _db = db;
         _currentUser = currentUser;
+        _cacheService = cacheService;
     }
 
     public async Task<Result<bool>> Handle(UpdateQuestionCommand request, CancellationToken cancellationToken)
@@ -53,6 +55,7 @@ public class UpdateQuestionCommandHandler : IRequestHandler<UpdateQuestionComman
         }
 
         await _db.SaveChangesAsync(cancellationToken);
+        await _cacheService.RemoveByPrefixAsync("questions:list", cancellationToken);
 
         return Result<bool>.Success(true);
     }

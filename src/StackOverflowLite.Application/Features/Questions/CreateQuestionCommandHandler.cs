@@ -10,11 +10,13 @@ public class CreateQuestionCommandHandler : IRequestHandler<CreateQuestionComman
 {
     private readonly IApplicationDbContext _db;
     private readonly ICurrentUserService _currentUser;
+    private readonly ICacheService _cacheService;
 
-    public CreateQuestionCommandHandler(IApplicationDbContext db, ICurrentUserService currentUser)
+    public CreateQuestionCommandHandler(IApplicationDbContext db, ICurrentUserService currentUser, ICacheService cacheService)
     {
         _db = db;
         _currentUser = currentUser;
+        _cacheService = cacheService;
     }
 
     public async Task<Result<Guid>> Handle(CreateQuestionCommand request, CancellationToken cancellationToken)
@@ -54,6 +56,7 @@ public class CreateQuestionCommandHandler : IRequestHandler<CreateQuestionComman
         }
 
         await _db.SaveChangesAsync(cancellationToken);
+        await _cacheService.RemoveByPrefixAsync("questions:list", cancellationToken);
 
         return Result<Guid>.Success(question.Id);
     }
