@@ -5,6 +5,9 @@ using StackOverflowLite.Application.Features.Answers;
 
 namespace StackOverflowLite.API.Controllers;
 
+/// <summary>
+/// Provides endpoints for answer updates and deletion.
+/// </summary>
 [ApiController]
 [Route("api/answers")]
 public class AnswersController : ControllerBase
@@ -16,6 +19,12 @@ public class AnswersController : ControllerBase
         _mediator = mediator;
     }
 
+    /// <summary>
+    /// Updates an answer.
+    /// </summary>
+    /// <param name="id">Answer identifier from route.</param>
+    /// <param name="command">Answer update payload.</param>
+    /// <returns>Operation status.</returns>
     [Authorize]
     [HttpPut("{id}")]
     public async Task<IActionResult> Update(Guid id, UpdateAnswerCommand command)
@@ -26,6 +35,11 @@ public class AnswersController : ControllerBase
         return Ok(result.Value);
     }
 
+    /// <summary>
+    /// Deletes an answer.
+    /// </summary>
+    /// <param name="id">Answer identifier.</param>
+    /// <returns>Operation status.</returns>
     [Authorize]
     [HttpDelete("{id}")]
     public async Task<IActionResult> Delete(Guid id)
